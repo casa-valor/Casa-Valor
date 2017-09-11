@@ -3,6 +3,8 @@
 
 ```sql
 
+/* Em construção: */
+
 CREATE TABLE Pais (
     id serial PRIMARY KEY,
     nome char(3)
@@ -23,14 +25,16 @@ CREATE TABLE Cidade (
 CREATE TABLE Categoria (
     id serial PRIMARY KEY,
     nome varchar(50),
-    tipo varchar(50)
+    tipo varchar(50),
+    check (tipo in ('à venda', 'para alugar'))
 );
 
 CREATE TABLE Imovel (
     id serial PRIMARY KEY,
     preco Int,
     area int,
-    data date,
+    data_insercao date,
+    data_publicacao date,
     FK_Cidade_id serial
 );
 
