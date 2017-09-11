@@ -27,13 +27,27 @@ DICA:
 # Sumário
 
 ### 1	COMPONENTES<br>
-Integrantes do grupo<br>
+
+* David Vilaa
+* Icaro Gavazza
 
 ### 2	INTRODUÇÃO E MOTIVAÇAO<br>
-Este documento contém a especificação do projeto do banco de dados <nome do projeto> e motivação da escolha realizada. <br>
+
+Casa & Valor é uma aplicação que visa fornecer informaçes estatísticas sobre valorizaço de imóveis de acordo com a região, ajudando a tomada de decisão de compra/venda de casas, apartamentos, terrenos, etc..
+<br>
       
 ### 3	MINI-MUNDO<br>
-Descrever o mini-mundo. Não deve ser maior do que 30 linhas <br>
+
+Casa & Valor é uma aplicação voltada para a população geral que fornece informações estatsticas do ramo imobiliário de uma determinada região a ser escolhida pelo usuário. A utilização da aplicação é totalmente feita pelo navegador web, sendo acessível a qualquer dispositivo com um navegador Chrome ou Firefox.
+
+Ao acessar o site pela primeira vez, o usuário visualizará um texto de boas vindas e um breve resumo sobre o que se trata a aplicação e logo após deverá ter opções para escolher qual o local que deseja obter as informações imobiliárias. As informações deverão ser apresentadas ao usuário tanto em gráficos quanto texto. As informações são:
+* Região em valorização (Mapa, Gráfico)
+* Região em desvalorizaço (Mapa, Gráfico)
+* Maior valor da região (Texto)
+* Menor valor da região (Texto)
+* Histórico anual da média de preços da região (Gráfico)
+* Listagem das ruas da região com suas respectivas médias de preos atuais e índice de crescimento
+<br>
 
 ### 4	RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)<br>
 neste ponto a codificação não e necessária, somente as ideias de telas devem ser criadas, o princípio aqui é pensar na criação da interface para identificar possíveis informações a serem armazenadas ou descartadas <br>
@@ -81,9 +95,7 @@ Sugestão: https://balsamiq.com/products/mockups/<br>
 
 ### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
 #### 9.1	GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)<br>
-
-## Data de Entrega: (18/09/2017)
-
+    Data de Entrega: (Data a ser definida)
 <br>
 OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da tela) mostrando os resultados.<br>
 
@@ -138,10 +150,7 @@ Data de Entrega: (Data a ser definida)
 <br>   
 
 #### 9.8	ANÁLISE DOS DADOS COM ORANGE<br>    
-        a) captura das informaçõs
-        b) integração com banco de dados em desenvolvimento
-        c) aplicação de algoritmos e interpretação dos resultados
-        c) atualização da documentação do trabalho incluindo a mineração de dados
+    a) aplicação de algoritmos e interpretação dos resultados
 <br>
     Data de Entrega: (Data a ser definida)
 <br>
@@ -153,40 +162,4 @@ Data de Entrega: (Data a ser definida)
 
 ### 11	DIFICULDADES ENCONTRADAS PELO GRUPO<br>  
 
-       
 ### 12  FORMATACAO NO GIT: https://help.github.com/articles/basic-writing-and-formatting-syntax/
-<comentario no git>
-    
-##### About Formatting
-    https://help.github.com/articles/about-writing-and-formatting-on-github/
-    
-##### Basic Formatting in Git
-    
-    https://help.github.com/articles/basic-writing-and-formatting-syntax/#referencing-issues-and-pull-requests
-    
-    
-##### Working with advanced formatting
-    https://help.github.com/articles/working-with-advanced-formatting/
-#### Mastering Markdown
-    https://guides.github.com/features/mastering-markdown/
-
-### OBSERVAÇÕES IMPORTANTES
-
-#### Todos os arquivos que fazem parte do projeto (Imagens, pdfs, arquivos fonte, etc..), devem estar presentes no GIT. Os arquivos do projeto vigente não devem ser armazenados em quaisquer outras plataformas.
-1. Caso existam arquivos com conteúdos sigilosos, comunicar o professor que definirá em conjunto com o grupo a melhor forma de armazenamento do arquivo.
-
-#### Todos os grupos deverão fazer Fork deste repositório e dar permissões administrativas ao usuário deste GIT, para acompanhamento do trabalho.
-
-#### Os usuários criados no GIT devem possuir o nome de identificação do aluno (não serão aceitos nomes como Eu123, meuprojeto, pro456, etc). Em caso de dúvida comunicar o professor.
-
-
-Link para BrModelo:<br>
-http://sis4.com/brModelo/brModelo/download.html
-<br>
-
-
-Link para curso de GIT<br>
-![https://www.youtube.com/curso_git](https://www.youtube.com/playlist?list=PLo7sFyCeiGUdIyEmHdfbuD2eR4XPDqnN2?raw=true "Title")
-
-
-
