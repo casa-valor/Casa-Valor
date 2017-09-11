@@ -33,7 +33,7 @@ CREATE TABLE Imovel (
     id serial PRIMARY KEY,
     preco Int,
     area int,
-    data_insercao date,
+    data_insercao TIMESTAMP,
     data_publicacao date,
     FK_Cidade_id serial
 );
@@ -62,4 +62,6 @@ ALTER TABLE Cat_imo ADD CONSTRAINT FK_Cat_imo_0
 ALTER TABLE Cat_imo ADD CONSTRAINT FK_Cat_imo_1
     FOREIGN KEY (FK_Imovel_id)
     REFERENCES Imovel (id);
+
+ALTER TABLE imovel ALTER COLUMN data_insercao SET DEFAULT now();
 ```
