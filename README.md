@@ -59,7 +59,7 @@ neste ponto a codificação não e necessária, somente as ideias de telas devem
 
 ### 5	MODELO CONCEITUAL<br>
 #### 5.1 NOTACAO ENTIDADE RELACIONAMENTO
-![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/Conceitual.png?raw=true "Modelo Conceitual")
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/conceitual.png?raw=true "Modelo Conceitual")
     
      5.2 NOTACAO UML (Caso esteja fazendo a disciplina de Projeto)
 
