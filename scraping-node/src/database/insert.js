@@ -60,7 +60,7 @@ async function insertData(dataArr) {
         pgData.cidade.push(cidadeBanco)
       }
 
-      let imovelResult = (await client.query(`INSERT INTO imovel (id, preco, area, data, fk_cidade_id) SELECT ${data.id},${data.preco},${data.area},'${data.data}',${cidadeBanco.id} WHERE NOT EXISTS (SELECT * FROM imovel WHERE imovel.id=${data.id}) RETURNING *;`).catch(handleError))
+      let imovelResult = (await client.query(`INSERT INTO imovel (id, preco, area, data_publicacao, fk_cidade_id) SELECT ${data.id},${data.preco},${data.area},'${data.data_publicacao}',${cidadeBanco.id} WHERE NOT EXISTS (SELECT * FROM imovel WHERE imovel.id=${data.id}) RETURNING *;`).catch(handleError))
 
       if (imovelResult.rows.length) {
         let imovel = imovelResult.rows[0]

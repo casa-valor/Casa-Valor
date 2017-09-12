@@ -2,7 +2,9 @@ const rp = require('request-promise')
 const _ = require('lodash')
 const getOptionsOLX = require('./request-options')
 const monitor = require('../monitor').getInstance()
+const moment = require('moment')
 
+moment.locale('pt-br')
 let totalStates = 0
 
 /**
@@ -56,7 +58,7 @@ function _fillDados(index = 1, estado, number = 1, dados = []) {
         return el.attr('class') === 'item'
       }).each(function (i, item) {
         item = $(item)
-        const data = new Date().toJSON().split('T')[0]
+        const data_insercao = new Date().toJSON().split('T')[0]
         const id = Number(item.find('a.OLXad-list-link').attr('id'))
         const detalhes = item.find('p.text.detail-specific').text().trim().split('|').map(a => a ? a.trim().toLowerCase() : null)
         const regiao = _.flatten(item.find('p.text.detail-region').text().trim().split(',').map(tratamentoRegiao))
@@ -76,8 +78,11 @@ function _fillDados(index = 1, estado, number = 1, dados = []) {
           }
         })
 
+        let data_publicacao = item.find('.col-4 p.text.mb5px')
+        data_publicacao = getDate(data_publicacao.length ? $(data_publicacao[0]).text() : 'Hoje')
+
         dado = {
-          tipo, area, data, bairro, cidade, categoria, preco, id, estado: estado.toUpperCase(), pais: 'BRA'
+          tipo, area, data_insercao, data_publicacao, bairro, cidade, categoria, preco, id, estado: estado.toUpperCase(), pais: 'BRA'
         }
         dados.push(dado)
       })
@@ -93,6 +98,27 @@ function _fillDados(index = 1, estado, number = 1, dados = []) {
  */
 function tratamentoRegiao(el) {
   return el.trim().split('-').map(a => a.trim()).filter(b => b.length)
+}
+
+/**
+ * Obter data a partir da string
+ * do item da OLX
+ * 
+ * @param {any} strDate 
+ */
+function getDate(strDate) {
+  let date
+  switch (strDate.trim()) {
+    case 'Hoje':
+      date = moment()
+      break
+    case 'Ontem':
+      date = moment().subtract(1, 'days')
+      break
+    default:
+      date = moment(`${strDate} ${moment().get('year')}`, 'D MMM YYYY')
+  }
+  return date.format('YYYY-MM-DD')
 }
 
 /**
