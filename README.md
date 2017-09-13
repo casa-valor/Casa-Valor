@@ -26,16 +26,16 @@ DICA:
     https://www.kickstarter.com/discover/categories/technology/apps
 # Sumário
 
-### 1	COMPONENTES<br>
+### 1	COMPONENTES
 
 * David Vilaa - vilacapdavid@gmail.com
 * Icaro Gavazza - icarodgl@gmail.com
 
-### 2	INTRODUÇÃO E MOTIVAÇAO<br>
+### 2	INTRODUÇÃO E MOTIVAÇAO
 
 Casa & Valor é uma aplicação que visa fornecer informaçes estatísticas sobre valorizaço de imóveis de acordo com a região, ajudando a tomada de decisão de compra/venda de casas, apartamentos, terrenos, etc..
       
-### 3	MINI-MUNDO<br>
+### 3	MINI-MUNDO
 
 Casa & Valor é uma aplicação voltada para a população geral que fornece informações estatsticas do ramo imobiliário de uma determinada região a ser escolhida pelo usuário. A utilização da aplicação é totalmente feita pelo navegador web, sendo acessível a qualquer dispositivo com um navegador Chrome ou Firefox.
 
@@ -111,13 +111,13 @@ Campo tipo (Categoria): Optamos por um campo simples do tipo `varchar` por ser e
 ### 9	TABELAS E PRINCIPAIS CONSULTAS
 
 
-#### 9.1	GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)<br>
+#### 9.1	GERACAO DE DADOS (MÍNIMO DE 10 REGISTROS PARA CADA TABELA NO BANCO DE DADOS)
 
 Data de Entrega: (Data a ser definida)
 
 OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da tela) mostrando os resultados.
 
-#### 9.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS <br> 
+#### 9.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS
 
 Data de Entrega: (Data a ser definida)
 
@@ -146,7 +146,17 @@ Data de Entrega: (Data a ser definida)
         c) Planejamento de rotinas de manutenção e monitoramento do banco
         d) Plano com frequencia de análises visando otimização de performance
 
-#### 9.6	Backup do Banco de Dados
+#### 9.6    GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)
+
+    a) principal tabela do sistema deve ter no mínimo 1,5 milhão de registros
+    b) tabelas diretamente relacionadas a tabela principal 100 mil registros
+    c) tabelas auxiliares de relacao multivalorada mínimo de 10 registros
+    d) registrar o tempo de inserção em cada uma das tabelas do banco de dados
+    e) especificar a quantidade de registros inseridos em cada tabela
+    Para melhor compreensão verifiquem o exemplo na base de testes:
+    https://github.com/discipbd2/base-de-testes-locadora
+
+#### 9.7	Backup do Banco de Dados
 
         Detalhamento do backup.
         a) Tempo
@@ -158,7 +168,7 @@ Data de Entrega: (Data a ser definida)
 
 Data de Entrega: (Data a ser definida)
 
-#### 9.7	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE
+#### 9.8	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE
 
     a) Lista de índices, tipos de índices com explicação de porque foram implementados
     b) Performance esperada VS Resultados obtidos
@@ -166,7 +176,7 @@ Data de Entrega: (Data a ser definida)
     
 Data de Entrega: (Data a ser definida)
 
-#### 9.8	ANÁLISE DOS DADOS COM ORANGE
+#### 9.9	ANÁLISE DOS DADOS COM ORANGE
 
     a) aplicação de algoritmos e interpretação dos resultados
 
