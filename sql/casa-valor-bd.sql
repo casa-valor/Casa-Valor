@@ -24,7 +24,7 @@ CREATE TABLE Categoria (
 
 CREATE TABLE Imovel (
     id serial PRIMARY KEY,
-    preco Int,
+    preco int,
     area int,
     data_insercao TIMESTAMP,
     data_publicacao date,

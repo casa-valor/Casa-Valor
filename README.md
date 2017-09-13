@@ -64,12 +64,18 @@ neste ponto a codificação não e necessária, somente as ideias de telas devem
      5.2 NOTACAO UML (Caso esteja fazendo a disciplina de Projeto)
 
 #### 5.3 DECISÕES DE PROJETO
-    [atributo]: [descrição da decisão]
-    
-    EXEMPLO:
-    a) Campo endereço: em nosso projeto optamos por um campo multivalorado e composto, pois a empresa 
-    pode possuir para cada departamento mais de uma localização... 
-    b) justifique!
+
+Identificador: Cada entidade do projeto foi optado por normalizar com identificador `id` para facilitar o campo destinado ao mesmo. Exceto a relação n:n **Cat_imo**, pois é desnecessário.
+
+Endereço: Foi acordado que para fins de melhor aproveitamento de espaço em disco e desempenho, o endereço será quebrado em entidades básicas em um relacionamento em cascata.
+
+Campo preco (Imovel): Em nosso projeto optamos pelo tipo `int` para o preço, pois é improvável imóveis possuir preço não inteiro, além desse tipo satisfazer com fartura a faixa de preço dos imóveis.
+
+Campo area: Optamos também pelo tipo `int` para a área, pois é improvável este campo não ser inteiro e esse tipo satisfaz.
+
+Campo categoria (Imovel): Optamos por uma relação através de uma entidade formada apenas de chaves estrangeiras, pois uma categoria pode se relacionar com nenhum ou vários imóveis e um imóvel pode estar ou não relacionado a uma categoria (raramente, mas aparecem alguns registros no OLX sem categoria).
+
+Campo tipo (Categoria): Optamos por um campo simples do tipo `varchar` por ser extremamente limitado o número de variações.
 
 #### 5.4 DESCRIÇÃO DOS DADOS 
     [objeto]: [descrição do objeto]
@@ -79,7 +85,13 @@ neste ponto a codificação não e necessária, somente as ideias de telas devem
     CPF: campo que armazena o número de Cadastro de Pessoa Física para cada cliente da empresa.<br>
 
 ### 6	MODELO LÓGICO<br>
+
+[BRM](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/logico.png)
+
 ### 7	MODELO FÍSICO<br>
+
+[SQL](https://github.com/casa-valor/Casa-Valor/blob/master/sql/casa-valor-bd.sql)
+
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
 #### 8.1 DETALHAMENTO DAS INFORMAÇÕES
         Detalhamento sobre as informações e processo de obtenção ou geração dos dados.
