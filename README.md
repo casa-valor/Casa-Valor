@@ -28,13 +28,12 @@ DICA:
 
 ### 1	COMPONENTES<br>
 
-* David Vilaa
-* Icaro Gavazza
+* David Vilaa - vilacapdavid@gmail.com
+* Icaro Gavazza - icarodgl@gmail.com
 
 ### 2	INTRODUÇÃO E MOTIVAÇAO<br>
 
 Casa & Valor é uma aplicação que visa fornecer informaçes estatísticas sobre valorizaço de imóveis de acordo com a região, ajudando a tomada de decisão de compra/venda de casas, apartamentos, terrenos, etc..
-<br>
       
 ### 3	MINI-MUNDO<br>
 
@@ -47,9 +46,9 @@ Ao acessar o site pela primeira vez, o usuário visualizará um texto de boas vi
 * Menor valor da região (Texto)
 * Histórico anual da média de preços da região (Gráfico)
 * Listagem das ruas da região com suas respectivas médias de preos atuais e índice de crescimento
-<br>
 
-### 4	RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)<br>
+### 4	RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)
+
 neste ponto a codificação não e necessária, somente as ideias de telas devem ser criadas, o princípio aqui é pensar na criação da interface para identificar possíveis informações a serem armazenadas ou descartadas <br>
 
 [Mokup do projeto](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/Casa-Valor.pdf)
@@ -57,11 +56,13 @@ neste ponto a codificação não e necessária, somente as ideias de telas devem
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/mokup.png "Title")
 
 
-### 5	MODELO CONCEITUAL<br>
+### 5	MODELO CONCEITUAL
+
+
 #### 5.1 NOTACAO ENTIDADE RELACIONAMENTO
+
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/conceitual.png?raw=true "Modelo Conceitual")
-    
-     5.2 NOTACAO UML (Caso esteja fazendo a disciplina de Projeto)
+
 
 #### 5.3 DECISÕES DE PROJETO
 
@@ -84,15 +85,17 @@ Campo tipo (Categoria): Optamos por um campo simples do tipo `varchar` por ser e
     CLIENTE: Tabela que armazena as informações relativas ao cliente<br>
     CPF: campo que armazena o número de Cadastro de Pessoa Física para cada cliente da empresa.<br>
 
-### 6	MODELO LÓGICO<br>
+### 6	MODELO LÓGICO
 
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/logico.png "Modelo Lógico")
 
-### 7	MODELO FÍSICO<br>
+### 7	MODELO FÍSICO
 
 [SQL](https://github.com/casa-valor/Casa-Valor/blob/master/sql/casa-valor-bd.sql)
 
-### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
+### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS
+
+
 #### 8.1 DETALHAMENTO DAS INFORMAÇÕES
         Detalhamento sobre as informações e processo de obtenção ou geração dos dados.
         Referenciar todas as fontes referentes a:
@@ -105,42 +108,46 @@ Campo tipo (Categoria): Optamos por um campo simples do tipo `varchar` por ser e
         b) inclusão das instruções de inserção dos dados nas referidas tabelas
         c) inclusão das instruções para execução de outros procedimentos necessários
 
-### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
+### 9	TABELAS E PRINCIPAIS CONSULTAS
+
+
 #### 9.1	GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)<br>
-    Data de Entrega: (Data a ser definida)
-<br>
-OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da tela) mostrando os resultados.<br>
+
+Data de Entrega: (Data a ser definida)
+
+OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da tela) mostrando os resultados.
 
 #### 9.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS <br> 
-    Data de Entrega: (Data a ser definida)
-<br>
 
-#### 9.3	SELECT DAS VISÕES COM PRIMEIROS 10 REGISTROS DA VIEW <br>
+Data de Entrega: (Data a ser definida)
+
+#### 9.3	SELECT DAS VISÕES COM PRIMEIROS 10 REGISTROS DA VIEW
+
         a) Descrição da view sobre que grupos de usuários (operacional/estratégico) <br>
         e necessidade ela contempla.
         b) Descrição das permissões de acesso e usuários correlacionados (após definição <br>
         destas características)
     Data de Entrega: (Data a ser definida)
-<br>
 
-#### 9.4	LISTA DE CODIGOS DAS FUNÇÕES, ASSERÇOES E TRIGGERS<br>
+#### 9.4	LISTA DE CODIGOS DAS FUNÇÕES, ASSERÇOES E TRIGGERS
+
         Detalhamento sobre funcionalidade de cada código.
         a) Objetivo
         b) Código do objeto (função/trigger/asserção)
         c) exemplo de dados para aplicação
         d) resultados em forma de tabela/imagem
-<br>
 
-#### 9.5	Administração do banco de dados<br>
+#### 9.5	Administração do banco de dados
+
         Descrição detalhada sobre como serão executadas no banco de dados as <br>
         seguintes atividades.
         a) Segurança e autorização de acesso:
         b) Estimativas de aquisição de recursos para armazenamento e processamento da informação
         c) Planejamento de rotinas de manutenção e monitoramento do banco
         d) Plano com frequencia de análises visando otimização de performance
-<br>
 
-#### 9.6	Backup do Banco de Dados<br>
+#### 9.6	Backup do Banco de Dados
+
         Detalhamento do backup.
         a) Tempo
         b) Tamanho
@@ -148,30 +155,27 @@ OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da 
         d) Tempo para restauração
         e) Teste de restauração (script sql)
         f) Tempo para restauração (script sql)
-<br>
 
 Data de Entrega: (Data a ser definida)
-<br>
 
-#### 9.7	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE<br>
+#### 9.7	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE
+
     a) Lista de índices, tipos de índices com explicação de porque foram implementados
     b) Performance esperada VS Resultados obtidos
     c) Tabela de resultados comparando velocidades antes e depois da aplicação dos índices.
-<br>
-    Data de Entrega: (Data a ser definida)
-<br>   
+    
+Data de Entrega: (Data a ser definida)
 
-#### 9.8	ANÁLISE DOS DADOS COM ORANGE<br>    
+#### 9.8	ANÁLISE DOS DADOS COM ORANGE
+
     a) aplicação de algoritmos e interpretação dos resultados
-<br>
-    Data de Entrega: (Data a ser definida)
-<br>
 
-### 10	ATUALIZAÇÃO DA DOCUMENTAÇÃO/ SLIDES E ENTREGA FINAL<br>
-<br>
     Data de Entrega: (Data a ser definida)
-<br>
 
-### 11	DIFICULDADES ENCONTRADAS PELO GRUPO<br>  
+### 10	ATUALIZAÇÃO DA DOCUMENTAÇÃO/ SLIDES E ENTREGA FINAL
+
+    Data de Entrega: (Data a ser definida)
+
+### 11	DIFICULDADES ENCONTRADAS PELO GRUPO
 
 ### 12  FORMATACAO NO GIT: https://help.github.com/articles/basic-writing-and-formatting-syntax/
