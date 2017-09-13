@@ -97,23 +97,23 @@ Campo tipo (Categoria): Optamos por um campo simples do tipo `varchar` por ser e
 
 
 #### 8.1 DETALHAMENTO DAS INFORMAÇÕES
-        Detalhamento sobre as informações e processo de obtenção ou geração dos dados.
-        Referenciar todas as fontes referentes a:
-        a) obtenção dos dados
-        b) obtenção de códigos reutilizados
-        c) fontes de estudo para desenvolvimento do projeto
-        
+
+Os dados estão sendo obtidos através de um **web scraping** que vasculha o site `olx.com.br` e obtém os dados referente aos imóveis que estão sendo anunciados por lá. Para saber mais [clique aqui](scraping-node).
+
+Para desenvolver a ferramenta que obtém os dados nos baseamos nos seguintes artigos:
+* [Scoth.io - Scraping the web with nodejs](https://scotch.io/tutorials/scraping-the-web-with-node-js)
+* [Tableless - Raspagem de dados com Node.js](https://tableless.com.br/raspagem-de-dados-com-node-js/)
+
 #### 8.2 INCLUSÃO DO SCRIPT PARA CRIAÇÃO DE TABELAS E INSERÇÃO DOS DADOS (ARQUIVO ÚNICO COM):
-        a) inclusão das instruções para criação das tabelas e estruturas de amazenamento do BD
-        b) inclusão das instruções de inserção dos dados nas referidas tabelas
-        c) inclusão das instruções para execução de outros procedimentos necessários
+
+[Arquivo create and insert](https://github.com/casa-valor/Casa-Valor/blob/master/sql/create-and-insert.sql)
 
 ### 9	TABELAS E PRINCIPAIS CONSULTAS
 
 
 #### 9.1	GERACAO DE DADOS (MÍNIMO DE 10 REGISTROS PARA CADA TABELA NO BANCO DE DADOS)
 
-Data de Entrega: (Data a ser definida)
+Data de Entrega: (18/09/2017)
 
 OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da tela) mostrando os resultados.
 
