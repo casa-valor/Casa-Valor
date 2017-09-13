@@ -86,7 +86,7 @@ Campo tipo (Categoria): Optamos por um campo simples do tipo `varchar` por ser e
 
 ### 6	MODELO LÓGICO<br>
 
-[BRM](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/logico.png)
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/logico.png "Modelo Lógico")
 
 ### 7	MODELO FÍSICO<br>
 
