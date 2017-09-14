@@ -79,11 +79,14 @@ Campo categoria (Imovel): Optamos por uma relação através de uma entidade for
 Campo tipo (Categoria): Optamos por um campo simples do tipo `varchar` por ser extremamente limitado o número de variações.
 
 #### 5.4 DESCRIÇÃO DOS DADOS 
-    [objeto]: [descrição do objeto]
-    
-    EXEMPLO:
-    CLIENTE: Tabela que armazena as informações relativas ao cliente<br>
-    CPF: campo que armazena o número de Cadastro de Pessoa Física para cada cliente da empresa.<br>
+   Categoria.nome : Possui a nome do lugar a ser negóciado podendo ser terreno, edificações, etc.
+   Categoria.tipo : Possui o tipo do negócio quer será realizado.
+   Imovel.preco : Possui o preço estabelecido pelo anunciante.
+   Imovel.area : Possui a área anunciada do lugar.
+   Imovel.data : Data de publicação do anuncio.
+   Cidade.nome : Nome da cidade usado para colher as estatisticas da região.
+   Estado.nome : Nome do estado usado para Agrupar as cidades.
+   Pais.nome : Pai por enquanto guarda apenas o Brasil, mas caso haja expansão já está feito.
 
 ### 6	MODELO LÓGICO
 
