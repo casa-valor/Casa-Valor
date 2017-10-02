@@ -1,4 +1,4 @@
-# TRABALHO 01 : Título do trabalho
+# TRABALHO 01 : Casa-Valor
 Trabalho desenvolvido durante a disciplina de BD
 
     O referido projeto poderá ser:
@@ -28,7 +28,7 @@ DICA:
 
 ### 1	COMPONENTES
 
-* David Vilaa - vilacapdavid@gmail.com
+* David Vilaça - vilacapdavid@gmail.com
 * Icaro Gavazza - icarodgl@gmail.com
 
 ### 2	INTRODUÇÃO E MOTIVAÇAO
