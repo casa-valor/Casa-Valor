@@ -136,7 +136,7 @@ function query(query) {
  * @returns {Promise<{ categoria:Array, cidade:Array, estado:Array, pais:Array }>}
  */
 async function getPgData() {
-  data = {
+  var data = {
     categoria: (await client.query('SELECT * FROM categoria;').catch(handleError)).rows,
     cidade: (await client.query('SELECT * FROM cidade;').catch(handleError)).rows,
     estado: (await client.query('SELECT * FROM estado;').catch(handleError)).rows,
