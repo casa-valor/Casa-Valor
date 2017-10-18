@@ -1,3 +1,5 @@
+/* TADAAAA!: */
+
 CREATE TABLE Pais (
     id serial PRIMARY KEY,
     nome char(3)
@@ -24,16 +26,19 @@ CREATE TABLE Categoria (
 
 CREATE TABLE Imovel (
     id serial PRIMARY KEY,
-    preco int,
+    preco Int,
     area int,
     data_insercao TIMESTAMP,
     data_publicacao date,
-    FK_Cidade_id serial
+    FK_Endereco_id serial,
+    FK_Categoria_id serial
 );
 
-CREATE TABLE Cat_imo (
-    FK_Categoria_id serial,
-    FK_Imovel_id serial
+CREATE TABLE Endereco (
+    id serial PRIMARY KEY,
+    cep Integer,
+    bairro varchar(100),
+    FK_Cidade_id serial
 );
  
 ALTER TABLE Estado ADD CONSTRAINT FK_Estado_1
@@ -45,15 +50,16 @@ ALTER TABLE Cidade ADD CONSTRAINT FK_Cidade_1
     REFERENCES Estado (id);
  
 ALTER TABLE Imovel ADD CONSTRAINT FK_Imovel_1
-    FOREIGN KEY (FK_Cidade_id)
-    REFERENCES Cidade (id);
+    FOREIGN KEY (FK_Endereco_id)
+    REFERENCES Endereco (id);
  
-ALTER TABLE Cat_imo ADD CONSTRAINT FK_Cat_imo_0
+ALTER TABLE Imovel ADD CONSTRAINT FK_Imovel_2
     FOREIGN KEY (FK_Categoria_id)
     REFERENCES Categoria (id);
  
-ALTER TABLE Cat_imo ADD CONSTRAINT FK_Cat_imo_1
-    FOREIGN KEY (FK_Imovel_id)
-    REFERENCES Imovel (id);
-
+ALTER TABLE Endereco ADD CONSTRAINT FK_Endereco_1
+    FOREIGN KEY (FK_Cidade_id)
+    REFERENCES Cidade (id);
 ALTER TABLE imovel ALTER COLUMN data_insercao SET DEFAULT now();
+
+
