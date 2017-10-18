@@ -1,0 +1,17 @@
+INSERT INTO Categoria (nome, tipo) VALUES
+('casas','à venda' ),
+('casas','para alugar' ),
+('apartamentos','à venda' ),
+('apartamentos','para alugar' ),
+('terrenos','à venda' ),
+('terrenos','para alugar' ),
+('citios e fazendas','à venda' ),
+('citios e fazendas','para alugar' ),
+('terrenos','à venda' ),
+('terrenos','para alugar' ),
+('lojas','à venda' ),
+('lojas','para alugar' ),
+('salas','à venda' ),
+('salas','para alugar' ),
+('outros','à venda' ),
+('outros','para alugar' );
