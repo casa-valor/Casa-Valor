@@ -1,8 +1,10 @@
 const rp = require('request-promise')
 const _ = require('lodash')
 const getOptionsOLX = require('./request-options')
+const getOptionsOLXSingle = require('./request-options-single')
 const monitor = require('../monitor').getInstance()
 const moment = require('moment')
+const sem = require('semaphore')(50)
 
 moment.locale('pt-br')
 let totalStates = 0
@@ -27,6 +29,37 @@ module.exports = function getDados(number = 1, states = ['es']) {
     states.forEach(state => all.push(_fillDados(1, state, number).catch(handleError)))
     resolve(
       Promise.all(all).catch(handleError).then(res => _.union(...res))
+        .then(data => {
+          return new Promise((resolve, reject) => {
+            let newData = []
+            let i = 0
+            data.forEach(d => {
+              sem.take(() => {
+                rp(getOptionsOLXSingle(d.link))
+                  .catch(err => reject(err))
+                  .then($ => {
+
+                    monitor.tick(((1 / (totalStates * number)) * 100) / 50, {
+                      mem: fix2decimals(process.memoryUsage().rss / 1024 / 1024).toString()
+                    })
+
+                    $('.OLXad-location .atributes .list.square-gray p.text strong.description').each(function (i, item$) {
+                      item$ = $(item$)
+                      let description = item$.text().trim()
+                      if (/^[0-9]{5}-[0-9]{3}$/.test(description)) {
+                        d.cep = Number(description.replace('-', ''))
+                      }
+                    })
+                    newData.push(d)
+                    if (++i === data.length) {
+                      resolve(newData)
+                    }
+                    sem.leave()
+                  })
+              })
+            })
+          })
+        })
     )
   })
 
@@ -48,7 +81,7 @@ function _fillDados(index = 1, estado, number = 1, dados = []) {
     .catch(handleError)
     .then($ => {
 
-      monitor.tick((1 / (totalStates * number)) * 100, {
+      monitor.tick(((1 / (totalStates * number)) * 100) / 50, {
         mem: fix2decimals(process.memoryUsage().rss / 1024 / 1024).toString()
       })
 
@@ -69,6 +102,7 @@ function _fillDados(index = 1, estado, number = 1, dados = []) {
         let preco = item.find('p.OLXad-list-price').text().trim().split(' ').filter(a => a.length)
         preco = preco.length === 0 ? null : Number(preco[1].replace('.', ''))
         let area = null
+        let link = item.find('a.OLXad-list-link').attr('href')
 
         detalhes.splice(0, 1)
         detalhes.forEach(detalhe => {
@@ -82,7 +116,7 @@ function _fillDados(index = 1, estado, number = 1, dados = []) {
         data_publicacao = getDate(data_publicacao.length ? $(data_publicacao[0]).text() : 'Hoje')
 
         dado = {
-          tipo, area, data_insercao, data_publicacao, bairro, cidade, categoria, preco, id, estado: estado.toUpperCase(), pais: 'BRA'
+          tipo, area, data_insercao, data_publicacao, bairro, cidade, categoria, preco, id, estado: estado.toUpperCase(), pais: 'BRA', link
         }
         dados.push(dado)
       })

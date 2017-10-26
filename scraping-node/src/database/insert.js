@@ -60,12 +60,13 @@ async function insertData(dataArr) {
         pgData.cidade.push(cidadeBanco)
       }
 
-      let imovelResult = (await client.query(`INSERT INTO imovel (id, preco, area, data_publicacao, fk_cidade_id) SELECT ${data.id},${data.preco},${data.area},'${data.data_publicacao}',${cidadeBanco.id} WHERE NOT EXISTS (SELECT * FROM imovel WHERE imovel.id=${data.id}) RETURNING *;`).catch(handleError))
-
-      if (imovelResult.rows.length) {
-        let imovel = imovelResult.rows[0]
-          ; (await client.query(`INSERT INTO cat_imo (fk_categoria_id, fk_imovel_id) VALUES (${categoriaBanco.id},${imovel.id});`).catch(handleError))
+      let enderecoBanco = _.find(pgData.endereo, end => end.cep === data.cep && end.bairro === data.bairro)
+      if (!enderecoBanco) {
+        enderecoBanco = (await insertAndReturn('endereco', ['cep', 'bairro', 'fk_cidade_id'], [`${data.cep || null}`, `'${data.bairro || null}'`, `${cidadeBanco.id}`]).catch(handleError))
+        pgData.endereco.push(enderecoBanco)
       }
+
+      let imovelResult = (await client.query(`INSERT INTO imovel (id, preco, area, data_publicacao, fk_endereco_id, fk_categoria_id) SELECT ${data.id},${data.preco},${data.area},'${data.data_publicacao}',${enderecoBanco.id},${categoriaBanco.id} WHERE NOT EXISTS (SELECT * FROM imovel WHERE imovel.id=${data.id}) RETURNING *;`).catch(handleError))
 
       i++
       monitor.tick(TICK_DELTA)
@@ -140,6 +141,7 @@ async function getPgData() {
     categoria: (await client.query('SELECT * FROM categoria;').catch(handleError)).rows,
     cidade: (await client.query('SELECT * FROM cidade;').catch(handleError)).rows,
     estado: (await client.query('SELECT * FROM estado;').catch(handleError)).rows,
+    endereco: (await client.query('SELECT * FROM endereco;').catch(handleError)).rows,
     pais: (await client.query('SELECT * FROM pais;').catch(handleError)).rows
   }
   return data
