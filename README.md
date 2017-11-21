@@ -217,7 +217,7 @@ Data de Entrega: (Data a ser definida)
     b) Performance esperada VS Resultados obtidos
     c) Tabela de resultados comparando velocidades antes e depois da aplicação dos índices.
     
-Data de Entrega: (Data a ser definida)
+Data de Entrega: (27/11)
 
 #### 9.9	ANÁLISE DOS DADOS COM ORANGE
 
