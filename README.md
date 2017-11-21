@@ -164,7 +164,7 @@ SELECT * FROM endereco LIMIT 10;
 SELECT * FROM all_imoveis LIMIT 10;
 ```
 
-![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-all_imoveis.png "Select Endereço")
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-all-imoveis.png "Select Endereço")
 
 a) View criada para ser utilizada somente pelo site para exibir informações aos usuários, não exatamente sozinho (sendo refinado por estado por exemplo).
 
