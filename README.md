@@ -122,15 +122,55 @@ OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da 
 
 #### 9.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS
 
-Data de Entrega: (Data a ser definida)
+```sql SELECT * FROM pais LIMIT 10;```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-pais.png "Select País")
+
+```sql SELECT * FROM estado LIMIT 10;```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-estado.png "Select Estado")
+
+```sql SELECT * FROM cidade LIMIT 10;```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-cidade.png "Select Cidade")
+
+```sql SELECT * FROM categoria LIMIT 10;```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-categoria.png "Select Categoria")
+
+```sql SELECT * FROM imovel LIMIT 10;```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-imovel.png "Select Imóvel")
+
+```sql SELECT * FROM endereco LIMIT 10;```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-endereco.png "Select Endereço")
 
 #### 9.3	SELECT DAS VISÕES COM PRIMEIROS 10 REGISTROS DA VIEW
 
-        a) Descrição da view sobre que grupos de usuários (operacional/estratégico) <br>
-        e necessidade ela contempla.
-        b) Descrição das permissões de acesso e usuários correlacionados (após definição <br>
-        destas características)
-    Data de Entrega: (Data a ser definida)
+```sql SELECT * FROM all_imoveis LIMIT 10; ```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-all_imoveis.png "Select Endereço")
+
+a) View criada para ser utilizada somente pelo site para exibir informações aos usuários, não exatamente sozinho (sendo refinado por estado por exemplo).
+
+b) Permissão apenas de *SELECT* para o usuário do site.
+
+```sql SELECT * FROM top_5_cidades_caras; ```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-cidades-caras.png "Select Top 5 Cidades Caras")
+
+a) View criada para ser utilizada somente pelo site para exibir informações aos usuários.
+
+b) Permissão apenas de *SELECT* para o usuário do site.
+
+```sql SELECT * FROM media_preco_estado LIMIT 10; ```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/select-media-preco-estado.png "Select Top 5 Cidades Caras")
+
+a) View criada para ser utilizada somente pelo site para exibir informações aos usuários.
+
+b) Permissão apenas de *SELECT* para o usuário do site.
 
 #### 9.4	LISTA DE CODIGOS DAS FUNÇÕES, ASSERÇOES E TRIGGERS
 
