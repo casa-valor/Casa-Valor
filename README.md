@@ -209,13 +209,8 @@ b) Permissão apenas de *SELECT* para o usuário do site.
 
 #### 9.6    GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)
 
-    a) principal tabela do sistema deve ter no mínimo 1,5 milhão de registros
-    b) tabelas diretamente relacionadas a tabela principal 100 mil registros
-    c) tabelas auxiliares de relacao multivalorada mínimo de 10 registros
-    d) registrar o tempo de inserção em cada uma das tabelas do banco de dados
-    e) especificar a quantidade de registros inseridos em cada tabela
-    Para melhor compreensão verifiquem o exemplo na base de testes:
-    https://github.com/discipbd2/base-de-testes-locadora
+Local dos dados no projeto:
+    https://github.com/casa-valor/Casa-Valor/tree/master/randados
 
 #### 9.7	Backup do Banco de Dados
 
@@ -240,9 +235,14 @@ echo "tempo: $dif"
 
 #### 9.8	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE
 
-    a) Lista de índices, tipos de índices com explicação de porque foram implementados
-    b) Performance esperada VS Resultados obtidos
-    c) Tabela de resultados comparando velocidades antes e depois da aplicação dos índices.
+Nos aplicamos indices na tabela Imovel e Endereco pois serão as tabelas mais importantes do sistemas.
+Em Imovel nos aplicamos o indice no campo preco e area pois so os campos que mais importantes do sistema.
+Na tabela Endereco, nós aplicamos  indice no bairro, pois assim lacalizaremos e agruparemos os bairros mais rapidamente.
+
+|Tabela|Com Indice|Sem Indice|
+|---|---|---|
+|Imovel|sec|sec|
+|Endereco|sec|sec|
     
 Data de Entrega: (27/11)
 
