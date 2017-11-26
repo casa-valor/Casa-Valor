@@ -206,6 +206,12 @@ Criamos os usuários para acesso as tabelas:
 
 Criamos os grupos e demos privilegios adequados aos mesmos:
 
+```sql
+grant all privileges on database casavalor to adms
+
+grant select on database casavalor to convidados
+```
+
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/grupos%20postgre.png "select grupos")
 
 
