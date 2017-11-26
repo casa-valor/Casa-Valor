@@ -219,15 +219,24 @@ b) Permissão apenas de *SELECT* para o usuário do site.
 
 #### 9.7	Backup do Banco de Dados
 
-        Detalhamento do backup.
-        a) Tempo
-        b) Tamanho
-        c) Teste de restauração (backup)
-        d) Tempo para restauração
-        e) Teste de restauração sql: *22 sec, 309.8Mb*
-        f) Tempo para restauração: *56 sec*
+|Tipo|Tamanho|Tempo backup|Tempo restore|
+|---|---|---|---|
+|Fc|58.4|24|50|
+|sql|309.8|22|56|
 
-Data de Entrega: (Data a ser definida)
+```shell
+ini=$(date +%s)
+
+#para fazer o backup descomente esta linha:
+#pg_dump -h localhost -Fc -U postgres -w -d casavalor > casavalor.bkp
+
+#para restaurar descomente esta linha:
+pg_restore -h localhost -U postgres -w -d casavalor2 < casavalor.bkp
+
+fim=$(date +%s)
+dif=$((fim - ini))
+echo "tempo: $dif"
+```
 
 #### 9.8	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE
 
