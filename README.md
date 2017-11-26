@@ -200,11 +200,11 @@ b) Permissão apenas de *SELECT* para o usuário do site.
 
 #### 9.5	Administração do banco de dados
 
-Criamos os usuários para acesso as tabelas:
+- Criamos os usuários para acesso as tabelas:
 
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/users%20postgre.png "select usuarios")
 
-Criamos os grupos e demos privilegios adequados aos mesmos:
+- Criamos os grupos e demos privilegios adequados aos mesmos:
 
 ```sql
 grant all privileges on database casavalor to adms
@@ -215,9 +215,15 @@ grant select on database casavalor to convidados
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/grupos%20postgre.png "select grupos")
 
 
-> b) Estimativas de aquisição de recursos para armazenamento e processamento da informação
-        
-As rotinas de manutenção serão executadas durante as terças, após coletar os dados com o sistema, realizaremos um os comandos:
+- A principio o projeto necessitará de um servidor basico para conseguir rodar pois o sistema recebe grande esforço apenas quando rodamos as inserções de dados realizadas pelo scrap, após isso poucas consultas são realizadas, o que será exigido em maior quantidade será armazenamento de dados, pois a cada semana será inserido informações de todo o Brasil, assim uma configuração sugerida seria:
+
+|recurso|quantidade|
+|---|---|
+|CPU|4 Core|
+|RAM|4 GB|
+|HDD|1TB|
+
+- As rotinas de manutenção serão executadas durante as terças, após coletar os dados com o sistema, realizaremos um os comandos:
 
 ```sql
 analyze;
