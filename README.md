@@ -200,6 +200,13 @@ b) Permissão apenas de *SELECT* para o usuário do site.
 
 #### 9.5	Administração do banco de dados
 
+Criamos os usuários para acesso as tabelas:
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/users%20postgre.png "select usuarios")
+
+Criamos os grupos e demos privilegios adequados aos mesmos:
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/grupos%20postgre.png "select grupos")
+
+
         Descrição detalhada sobre como serão executadas no banco de dados as <br>
         seguintes atividades.
         a) Segurança e autorização de acesso:
