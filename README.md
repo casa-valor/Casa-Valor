@@ -215,12 +215,14 @@ grant select on database casavalor to convidados
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/grupos%20postgre.png "select grupos")
 
 
-        Descrição detalhada sobre como serão executadas no banco de dados as <br>
-        seguintes atividades.
-        a) Segurança e autorização de acesso:
-        b) Estimativas de aquisição de recursos para armazenamento e processamento da informação
-        c) Planejamento de rotinas de manutenção e monitoramento do banco
-        d) Plano com frequencia de análises visando otimização de performance
+> b) Estimativas de aquisição de recursos para armazenamento e processamento da informação
+        
+As rotinas de manutenção serão executadas durante as terças, após coletar os dados com o sistema, realizaremos um os comandos:
+
+```sql
+analyze;
+reindex;
+```
 
 #### 9.6    GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)
 
