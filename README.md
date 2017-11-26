@@ -223,12 +223,12 @@ grant select on database casavalor to convidados
 |RAM|4 GB|
 |HDD|1TB|
 
-- As rotinas de manutenção serão executadas durante as terças, após coletar os dados com o sistema, realizaremos um os comandos:
+- As rotinas de manutenção serão executadas durante as terças, após coletar os dados com o sistema, realizaremos o comando:
 
 ```sql
 analyze;
-reindex;
 ```
+Outros não serão necessáros pois o sistema não receberá deleções.
 
 #### 9.6    GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)
 
