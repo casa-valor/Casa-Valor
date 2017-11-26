@@ -224,8 +224,8 @@ b) Permissão apenas de *SELECT* para o usuário do site.
         b) Tamanho
         c) Teste de restauração (backup)
         d) Tempo para restauração
-        e) Teste de restauração (script sql)
-        f) Tempo para restauração (script sql)
+        e) Teste de restauração sql: *22 sec, 309.8Mb*
+        f) Tempo para restauração: *56 sec*
 
 Data de Entrega: (Data a ser definida)
 
