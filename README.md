@@ -222,7 +222,27 @@ INSERT INTO Imovel (preco, area, data_publicacao, FK_Endereco_id, FK_Categoria_i
 (-1,107,'2017-10-30',19117,9)
 ```
 resultado:
+
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/erropreconegativo.png "erro preco negativo")
+
+```sql
+CREATE OR REPLACE FUNCTION MEDIAPONDERADABAIRRO (NOMEBAIRRO VARCHAR)
+RETURNS TABLE(MEDIA BIGINT)
+AS $$
+SELECT SUM(I.PRECO*I.AREA)/SUM(I.AREA) AS MEDIAMALUCA FROM IMOVEL AS I
+	INNER JOIN ENDERECO AS E ON (I.FK_ENDERECO_ID =  E.ID)
+	WHERE E.BAIRRO ILIKE NOMEBAIRRO;
+$$ LANGUAGE SQL
+```
+
+teste:
+
+```sql
+select * from mediaPonderadaBairro ('langan')
+```
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/funcaomediabairro.png "resultado")
+
 
 #### 9.5	Administração do banco de dados
 
