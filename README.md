@@ -196,7 +196,6 @@ b) Permissão apenas de *SELECT* para o usuário do site.
 ##### Verificação de preço negativo
 
 a) Evitar preços negativos
-b) 
 
 ```sql
 CREATE OR REPLACE FUNCTION checkPrecoNegativo() RETURNS TRIGGER
@@ -217,6 +216,13 @@ ON Imovel
  FOR EACH ROW
  EXECUTE PROCEDURE checkPrecoNegativo();
 ```
+teste:
+```sql
+INSERT INTO Imovel (preco, area, data_publicacao, FK_Endereco_id, FK_Categoria_id) VALUES
+(-1,107,'2017-10-30',19117,9)
+```
+resultado:
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/erropreconegativo.png "erro preco negativo")
 
 #### 9.5	Administração do banco de dados
 
