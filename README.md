@@ -192,11 +192,31 @@ b) Permissão apenas de *SELECT* para o usuário do site.
 
 #### 9.4	LISTA DE CODIGOS DAS FUNÇÕES, ASSERÇOES E TRIGGERS
 
-        Detalhamento sobre funcionalidade de cada código.
-        a) Objetivo
-        b) Código do objeto (função/trigger/asserção)
-        c) exemplo de dados para aplicação
-        d) resultados em forma de tabela/imagem
+        
+##### Verificação de preço negativo
+
+a) Evitar preços negativos
+b) 
+
+```sql
+CREATE OR REPLACE FUNCTION checkPrecoNegativo() RETURNS TRIGGER
+AS $$
+
+BEGIN
+  IF ( NEW.preco < 0 ) THEN
+    RAISE EXCEPTION 'Erro: Preço não pode ser negativo!';
+  END IF;
+  RETURN NULL;
+END;
+
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER checkPrecoNegativoTrigger
+ BEFORE INSERT OR UPDATE
+ON Imovel
+ FOR EACH ROW
+ EXECUTE PROCEDURE checkPrecoNegativo();
+```
 
 #### 9.5	Administração do banco de dados
 
