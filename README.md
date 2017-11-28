@@ -449,7 +449,7 @@ SELECT * FROM IMOVEL2 I
 |A REAL|sec|sec|
 |B ESPERADO|1.322ms|18.203ms|
 |B REAL|sec|sec|
-|C ESPERADO|sec|sec|
+|C ESPERADO|3376.401ms|3440.495ms|
 |C REAL|sec|sec|
 
 IMAGENS:
