@@ -192,7 +192,40 @@ b) Permissão apenas de *SELECT* para o usuário do site.
 
 #### 9.4	LISTA DE CODIGOS DAS FUNÇÕES, ASSERÇOES E TRIGGERS
 
-        
+##### Adicionar um imóvel já com endereço
+
+Objetivo: Adicionar imóvel de forma facilitada e retornar imóvel salvo para o scraping para realizar as ações automáticas sem precisar executar várias queries.
+
+```sql
+CREATE FUNCTION addImovel(id_p integer, preco_p integer, area_p integer, data_pub_p date, cep_p integer, bairro_p varchar, fk_cidade_id_p integer, fk_categoria_id_p integer)
+RETURNS imovel
+AS $$
+DECLARE
+  categoria integer;
+  im imovel;
+BEGIN
+  INSERT INTO endereco (cep, bairro, FK_Cidade_id) VALUES ($5, $6, $7) RETURNING id INTO categoria;
+  INSERT INTO imovel (
+      id, preco, area, data_publicacao,
+      FK_Endereco_id,
+      FK_Categoria_id)
+    VALUES (
+      $1, $2, $3, $4, categoria, $8
+    ) RETURNING * INTO im;
+    RETURN im;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+Teste:
+```sql
+SELECT * FROM addImovel(999999995, 250000, 100, '2017-08-15', 29836421, 'Manguinhos', 22, 1);
+```
+
+Resultado:
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultadoaddimovel.png "Resultado addImovel")
+
 ##### Verificação de preço negativo
 
 a) Evitar preços negativos
@@ -216,30 +249,38 @@ ON Imovel
  FOR EACH ROW
  EXECUTE PROCEDURE checkPrecoNegativo();
 ```
-teste:
+
+Teste:
+
 ```sql
 INSERT INTO Imovel (preco, area, data_publicacao, FK_Endereco_id, FK_Categoria_id) VALUES
 (-1,107,'2017-10-30',19117,9)
 ```
-resultado:
+Resultado:
 
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/erropreconegativo.png "erro preco negativo")
 
+##### Média ponderada por bairro
+
+Objetivo: Obter a média ponderada de preço dado um bairro aliviando o processamento do site, transferindo para o servidor.
+
 ```sql
-CREATE OR REPLACE FUNCTION MEDIAPONDERADABAIRRO (NOMEBAIRRO VARCHAR)
+CREATE FUNCTION mediaPonderadaBairro (NOMEBAIRRO VARCHAR)
 RETURNS TABLE(MEDIA BIGINT)
 AS $$
-SELECT SUM(I.PRECO*I.AREA)/SUM(I.AREA) AS MEDIAMALUCA FROM IMOVEL AS I
+SELECT SUM(I.PRECO*I.AREA)/SUM(I.AREA) AS media_preco FROM IMOVEL AS I
 	INNER JOIN ENDERECO AS E ON (I.FK_ENDERECO_ID =  E.ID)
 	WHERE E.BAIRRO ILIKE NOMEBAIRRO;
 $$ LANGUAGE SQL
 ```
 
-teste:
+Teste:
 
 ```sql
 select * from mediaPonderadaBairro ('langan')
 ```
+
+Resultado:
 
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/funcaomediabairro.png "resultado")
 
@@ -304,14 +345,138 @@ echo "tempo: $dif"
 
 #### 9.8	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE
 
-Nos aplicamos indices na tabela Imovel e Endereco pois serão as tabelas mais importantes do sistemas.
-Em Imovel nos aplicamos o indice no campo preco e area pois so os campos que mais importantes do sistema.
-Na tabela Endereco, nós aplicamos  indice no bairro, pois assim lacalizaremos e agruparemos os bairros mais rapidamente.
+Nos aplicamos índices na tabela `imovel` e `endereco` pois serão as tabelas mais importantes do sistemas.
+Em `imovel` nos aplicamos o índice no campo `preco` e `area` pois so os campos que mais importantes do sistema.
+Na tabela `endereco`, nós aplicamos  índice no `bairro`, pois assim lacalizaremos e agruparemos os bairros mais rapidamente.
+
+##### CONFIGURAÇÕES DA MÁQUINA
+
+Todos os testes foram executados em um Macbook Air 13, modelo 2015 com 8gb de memória ram, processador intel core i5 e com sistema operacional MacOS High Sierra (10.13.1) sem configurações de economia de energia.
+
+##### CONFIGURAÇÕES DO BANCO
+
+```sql
+-- Função para copiar criar tabela identica
+CREATE OR REPLACE FUNCTION create_table_like(source_table text, new_table text)
+RETURNS void LANGUAGE plpgsql
+AS $$
+DECLARE
+    rec record;
+BEGIN
+    EXECUTE format(
+        'create table %s (like %s including all)',
+        new_table, source_table);
+    FOR rec IN
+        SELECT oid, conname
+        FROM pg_constraint
+        WHERE contype = 'f' 
+        AND conrelid = source_table::regclass
+    LOOP
+        execute format(
+            'alter table %s add constraint %s %s',
+            new_table,
+            replace(rec.conname, source_table, new_table),
+            pg_get_constraintdef(rec.oid));
+    END LOOP;
+END $$;
+
+-- Criando nova tabela de imóvel e adicionando os mesmos dados
+SELECT create_table_like('imovel', 'imovel2');
+INSERT INTO imovel2 SELECT * FROM imovel;
+
+-- Criando nova tabela de endereço e adicionando os mesmos dados
+SELECT create_table_like('endereco', 'endereco2');
+INSERT INTO endereco2 SELECT * FROM endereco;
+
+
+-- Adicionando índices na tabela imovel2
+CREATE INDEX precoBtree ON imovel2 (preco);
+CREATE INDEX areaBtree ON imovel2 (area);
+
+-- Adicionando índice na tabela endereco2
+CREATE INDEX bairroBtree ON endereco2 USING hash (bairro);
+
+-- OBS: APROXIMADAMENTE 1m A EXECUÇÃO
+```
+
+##### QUERIES
+
+Sem índice
+
+```sql
+-- A
+SELECT E.BAIRRO, AVG(I.PRECO) FROM IMOVEL I
+  INNER JOIN ENDERECO E ON (E.ID = I.FK_ENDERECO_ID)
+  WHERE I.PRECO < 200000 AND (E.BAIRRO = 'Kings' OR E.BAIRRO = 'Wogan')
+  GROUP BY E.BAIRRO;
+
+-- B
+SELECT BAIRRO, COUNT(E.ID) 
+  FROM ENDERECO E 
+  WHERE E.BAIRRO = 'Kings'
+  GROUP BY BAIRRO
+
+-- C
+SELECT * FROM IMOVEL I
+  WHERE I.PRECO <= 300000;
+```
+
+Com índice
+
+```sql
+-- A
+SELECT E.BAIRRO, AVG(I.PRECO) FROM IMOVEL2 I
+  INNER JOIN ENDERECO2 E ON (E.ID = I.FK_ENDERECO_ID)
+  WHERE I.PRECO < 200000 AND (E.BAIRRO = 'Kings' OR E.BAIRRO = 'Wogan')
+  GROUP BY E.BAIRRO;
+
+-- B
+SELECT BAIRRO, COUNT(E.ID) 
+  FROM ENDERECO2 E 
+  WHERE E.BAIRRO = 'Kings'
+  GROUP BY BAIRRO
+
+-- C
+SELECT * FROM IMOVEL2 I
+  WHERE I.PRECO <= 300000;
+```
+
+##### RESULTADOS
 
 |Tabela|Com Indice|Sem Indice|
 |---|---|---|
-|Imovel|sec|sec|
-|Endereco|sec|sec|
+|A ESPERADO|1318.519ms|2417.828ms|
+|A REAL|sec|sec|
+|B ESPERADO|1.322ms|18.203ms|
+|B REAL|sec|sec|
+|C ESPERADO|sec|sec|
+|C REAL|sec|sec|
+
+IMAGENS:
+
+***A (SEM ÍNDICE):***
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultado-esperado-a-semindex.png "resultado a sem index")
+
+***A (COM ÍNDICE):***
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultado-esperado-a-comindex.png "resultado a com index")
+
+***B (SEM ÍNDICE):***
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultado-esperado-b-semindex.png "resultado b sem index")
+
+***B (COM ÍNDICE):***
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultado-esperado-b-comindex.png "resultado b com index")
+
+***C (SEM ÍNDICE):***
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultado-esperado-c-semindex.png "resultado c sem index")
+
+***C (COM ÍNDICE):***
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultado-esperado-c-comindex.png "resultado c com index")
     
 Data de Entrega: (27/11)
 
