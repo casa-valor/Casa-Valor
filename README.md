@@ -353,6 +353,8 @@ Na tabela `endereco`, nós aplicamos  índice no `bairro`, pois assim lacalizare
 
 Todos os testes foram executados em um Macbook Air 13, modelo 2015 com 8gb de memória ram, processador intel core i5 e com sistema operacional MacOS High Sierra (10.13.1) sem configurações de economia de energia.
 
+```Obs: O postgres foi instanciado com Docker (17.09.0-ce, build afdb6d4)```
+
 ##### CONFIGURAÇÕES DO BANCO
 
 ```sql
@@ -395,6 +397,7 @@ CREATE INDEX areaBtree ON imovel2 (area);
 
 -- Adicionando índice na tabela endereco2
 CREATE INDEX bairroBtree ON endereco2 USING hash (bairro);
+-- Correção: O nome do índice deveria se chamar bairroHash (falha nossa)
 
 -- OBS: APROXIMADAMENTE 1m A EXECUÇÃO
 ```
@@ -446,13 +449,15 @@ SELECT * FROM IMOVEL2 I
 |Tabela|Com Indice|Sem Indice|
 |---|---|---|
 |A ESPERADO|1318.519ms|2417.828ms|
-|A REAL|sec|sec|
+|A REAL|140ms|258ms|
 |B ESPERADO|1.322ms|18.203ms|
-|B REAL|sec|sec|
+|B REAL|23ms|35ms|
 |C ESPERADO|3376.401ms|3440.495ms|
-|C REAL|sec|sec|
+|C REAL|3200ms|3145ms|
 
 IMAGENS:
+
+***RESULTADOS ESPERADOS**
 
 ***A (SEM ÍNDICE):***
 
@@ -477,6 +482,10 @@ IMAGENS:
 ***C (COM ÍNDICE):***
 
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultado-esperado-c-comindex.png "resultado c com index")
+
+***RESULTADOS REAIS***
+
+![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultados-reais.png "RESULTADOS REAIS")
     
 Data de Entrega: (27/11)
 
