@@ -486,6 +486,10 @@ IMAGENS:
 ***RESULTADOS REAIS***
 
 ![Alt text](https://github.com/casa-valor/Casa-Valor/blob/master/documentos/resultados-reais.png "RESULTADOS REAIS")
+
+##### Observações da entrega
+
+A tabela de categoria possui um campo chamado `tipo` que seria melhor criar uma tabela a parte e fazer a ligação com chave estrangeira, porém no estado atual da aplicação (scraing) o esforço seria muito grande e ficou acordado o estudo futuro para a mudança.
     
 Data de Entrega: (27/11)
 
